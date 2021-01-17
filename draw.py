@@ -54,11 +54,11 @@ path = input("Link or path: ")
 if re.search(pattern, path):
     img_path = f"/home/{getuser()}/temp_skribbl"
     urlretrieve(path, img_path)
-    res = tuple(map(int, input("Resolution (WxH): ").split("x")))
+    res = tuple(map(int, input("Resolution (WxH): ").split("x")))  # Duplicated so that urlretrieve can check url before getting resolution... saves time
     image = pygame.transform.scale(pygame.image.load(img_path), res)
     remove(img_path)
 else:
-    res = tuple(map(int, input("Resolution (WxH): ").split("x")))
+    res = tuple(map(int, input("Resolution (WxH): ").split("x")))  # Duplicated so that urlretrieve can check url before getting resolution... saves time
     image = pygame.transform.scale(pygame.image.load(path), res)
 
 
