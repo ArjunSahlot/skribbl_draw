@@ -51,13 +51,14 @@ rect = data["rect"]
 
 pattern = re.compile(r"https?://")
 path = input("Link or path: ")
-res = tuple(map(int, input("Resolution (WxH): ").split("x")))
 if re.search(pattern, path):
     img_path = f"/home/{getuser()}/temp_skribbl"
     urlretrieve(path, img_path)
+    res = tuple(map(int, input("Resolution (WxH): ").split("x")))
     image = pygame.transform.scale(pygame.image.load(img_path), res)
     remove(img_path)
 else:
+    res = tuple(map(int, input("Resolution (WxH): ").split("x")))
     image = pygame.transform.scale(pygame.image.load(path), res)
 
 
