@@ -9,6 +9,7 @@ from pynput.keyboard import Listener
 import threading
 from random_utils.funcs import crash
 import numpy as np
+import sys
 pyautogui.PAUSE = 0
 
 
@@ -50,7 +51,13 @@ rect = data["rect"]
 pattern = re.compile(r"https?://")
 path = input("Link or path: ")
 if re.search(pattern, path):
-    img_path = f"/home/{getuser()}/temp_skribbl"
+    if sys.platform == "linux":
+        img_path = f"/home/{getuser()}/temp_skribbl"
+    elif sys.platform == "windows":
+        img_path = f"C:/Users/{getuser()}/temp_skribbl"
+    else:
+        img_path = f"/Users/{getuser()}/temp_skribbl"
+
     urlretrieve(path, img_path)
     res = tuple(map(int, input("Resolution (WxH): ").split("x")))  # Duplicated so that urlretrieve can check url before getting resolution... saves time
     image = pygame.transform.scale(pygame.image.load(img_path), res)
