@@ -7,17 +7,12 @@ from os import remove
 import pyautogui
 from pynput.keyboard import Listener
 import threading
-# from random_utils.funcs import crash
+from random_utils.funcs import crash
 import numpy as np
-import ctypes
 pyautogui.PAUSE = 0
 
 
 next_col = False
-
-def crash():
-    ctypes.pointer(ctypes.c_char.from_address(5))[0]
-
 
 def check_key(key):
     global next_col
@@ -34,7 +29,10 @@ def monitor_keys():
 
 
 def compare_colors(c1, c2):
-    return abs(sum(np.array(c1) - np.array(c2)))
+    r = abs(c2[0] - c1[0])
+    g = abs(c2[1] - c1[1])
+    b = abs(c2[2] - c1[2])
+    return r + g + b
 
 
 def get_best_color(colors, color):

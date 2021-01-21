@@ -16,6 +16,6 @@ print("Done")
 for i in range(int(input("How many colors are available to draw with: "))):
     input(f"Color {i+1}. Enter when done.")
     pos = position()
-    colors[pos] = screen.getpixel(pos)[:3]
+    colors[pos] = screen.getpixel(pos)
 
 dump({"colors": colors, "rect": rect}, open("screen_info.skribbl_draw", "wb"))
