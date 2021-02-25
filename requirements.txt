@@ -3,3 +3,4 @@ pyautogui
 pynput
 random-utils
 numpy
+pillow
